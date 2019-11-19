@@ -18,13 +18,12 @@ images=(
     kube-controller-manager:$KUBE_VERSION
     kube-scheduler:$KUBE_VERSION
     kube-proxy:$KUBE_VERSION
-    pause:${KUBE_PAUSE_VERSION}
-    etcd:${ETCD_VERSION}
-    coredns:${CORE_DNS_VERSION}
+    pause:$KUBE_PAUSE_VERSION
+    etcd:$ETCD_VERSION
+    coredns:$CORE_DNS_VERSION
 )
 
 for imageName in ${images[@]} ; do
-  docker pull registry.cn-shanghai.aliyuncs.com/llion-k8s-gcr-io/pause:[镜像版本号]
   docker pull $ALIYUN_URL/$imageName
   docker tag  $ALIYUN_URL/$imageName $GCR_URL/$imageName
   docker rmi  $ALIYUN_URL/$imageName
